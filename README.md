@@ -1,38 +1,36 @@
-# 🚗 Rent A Car - Enterprise Backend API
+# 🚗 Rent A Car - Enterprise RESTful API
 
 ![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![Hibernate](https://img.shields.io/badge/Hibernate-ORM-59666C?style=for-the-badge&logo=hibernate&logoColor=white)
-![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+![OpenAPI](https://img.shields.io/badge/OpenAPI-3.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 
-This project is an enterprise-grade **Rent-A-Car Backend API** developed with modern software engineering practices.
+An enterprise-grade RESTful API designed for a Rent-A-Car system, developed utilizing **Java 17** and **Spring Boot 3**. The architecture strictly adheres to **S.O.L.I.D. principles** and the **N-Tier (Layered) Architecture** pattern to ensure high cohesion and loose coupling.
 
-The primary goal of this project is to implement **Layered Architecture** and **S.O.L.I.D principles** to ensure a scalable, maintainable, and clean codebase.
+## 🏗️ System Architecture & Design
 
-## 🏗️ Architecture (Layered Design)
+The system is decoupled into isolated layers, communicating exclusively through interfaces and DTOs to prevent domain model leakage and ensure modularity.
 
-The project is built upon a layered architecture to minimize dependencies between components (Loose Coupling).
+*   **Presentation Layer (Controllers):** Implements RESTful constraints. Returns standardized JSON responses via Spring's `ResponseEntity`.
+*   **Business Logic Layer (Services):** Encapsulates core business rules. Utilizes **Dependency Injection (IoC)** via constructor injection for deterministic testing and immutability.
+*   **Data Access Layer (Repositories):** Implements the **Repository Design Pattern** via Spring Data JPA, abstracting the underlying relational database persistence mechanism.
+*   **Domain Model (Entities):** POJOs (Plain Old Java Objects) mapped to relational tables utilizing Hibernate ORM.
 
-*   **Web API (Controllers):** Handles incoming HTTP requests from the client, routes them, and returns responses in JSON format.
-*   **Business (Services):** The core layer where business rules are executed. Data validation and DTO-Entity mapping operations are handled here.
-*   **Data Access (Repositories):** The layer responsible for direct communication with the database and CRUD operations, abstracted using Spring Data JPA.
-*   **Entities:** The Object-Oriented (OOP) representations of the database tables.
+## ⚙️ Technical Specifications & Best Practices
 
-## ⚙️ Core Features & Principles
+*   **Data Transfer Object (DTO) Pattern:** Decouples the API contract from the internal database schema, optimizing payload size and preventing over-posting vulnerabilities.
+*   **OpenAPI 3.0 Specification:** API endpoints are fully documented and interactive via Swagger UI, providing clear and standardized contracts for client-side consumption.
+*   **Inversion of Control (IoC):** Spring's `ApplicationContext` manages bean lifecycles (Singleton by default), reducing memory footprint and enforcing structural modularity.
+*   **Build & Dependency Management:** Maven is utilized for build lifecycle management, resolving transitive dependencies, and compiling the executable JAR.
 
-*   **DTO (Data Transfer Object) Pattern:** Instead of exposing database entities directly to the outside world, DTOs are used to transfer only the necessary data for security and performance.
-*   **Dependency Injection (IoC):** Transitions between layers are provided via interfaces and managed by Spring's IoC Container.
-*   **API Documentation:** Integrated with Swagger (OpenAPI) for seamless testing and exploration of API endpoints.
+## 🛠️ Tech Stack
 
-## 🛠️ Technologies & Tools
+*   **Core:** Java 17, Spring Boot 3.x
+*   **Persistence:** Spring Data JPA, Hibernate, MS SQL Server (Configurable via `application.properties`)
+*   **API Documentation:** Springdoc OpenAPI (Swagger UI)
+*   **Boilerplate Reduction:** Project Lombok
 
-*   **Language:** Java 17+
-*   **Framework:** Spring Boot
-*   **ORM:** Hibernate & Spring Data JPA
-*   **Database:** In-Memory Database (for development) / MS SQL Server
-*   **Tools:** Maven, Lombok, Swagger/OpenAPI UI
-
-## 🚀 How to Run
+## 🚀 Local Development Setup
 
 1. Clone the repository to your local machine:
    ```bash
