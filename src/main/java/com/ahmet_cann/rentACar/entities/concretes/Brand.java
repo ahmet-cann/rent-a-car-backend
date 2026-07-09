@@ -1,5 +1,8 @@
 package com.ahmet_cann.rentACar.entities.concretes;
 
+import jakarta.persistence.Table;
+
+@Table(name = "brands")
 public class Brand {
     private String brandName;
     private int id;
