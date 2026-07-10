@@ -16,10 +16,12 @@ public class BrandsController {
 
     @Autowired
     public BrandsController(BrandServices brandServices) {
+
         this.brandServices = brandServices;
     }
     @GetMapping("/getAll")
     public List<Brand> getAll() {
+
         return brandServices.getAll();
     }
 
