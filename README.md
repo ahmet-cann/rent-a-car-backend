@@ -3,6 +3,7 @@
 ![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![Hibernate](https://img.shields.io/badge/Hibernate-ORM-59666C?style=for-the-badge&logo=hibernate&logoColor=white)
+![MS SQL Server](https://img.shields.io/badge/MS_SQL_Server-2022-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-3.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 
 An enterprise-grade RESTful API designed for a Rent-A-Car system, developed utilizing **Java 17** and **Spring Boot 3**. The architecture strictly adheres to **S.O.L.I.D. principles** and the **Clean Architecture (N-Tier)** pattern to ensure high cohesion, loose coupling, and scalability.
@@ -16,6 +17,41 @@ The system is decoupled into isolated layers, communicating exclusively through 
 * **Data Access Layer (Repositories):** Implements the **Repository Design Pattern** via Spring Data JPA, abstracting the underlying relational database persistence mechanism.
 * **Core / Utilities:** Centralized configuration modules, providing cross-cutting concerns like dynamic object mapping across the entire application.
 * **Domain Model (Entities):** POJOs (Plain Old Java Objects) mapped to relational tables utilizing Hibernate ORM.
+
+## 📁 Project Structure & Deep Dive
+
+The system is decoupled into isolated layers. Each package has a strict, single responsibility exactly as structured below:
+
+```text
+com.ahmet_cann.rentACar
+│
+├── 📂 webApi.controllers       # Presentation Layer
+│   └── BrandsController        # Exposes Full CRUD endpoints (@PostMapping, @GetMapping, etc.) and delegates requests to BrandServices.
+│
+├── 📂 business                 # Business Logic Layer
+│   ├── 📂 abstracts            
+│   │   └── BrandServices       # Interface defining the service contracts (add, getAll, getById, update, delete).
+│   ├── 📂 concretes            
+│   │   └── BrandManager        # Core engine (@Service) handling business rules and mapping logic using DI.
+│   ├── 📂 requests             # Inbound DTOs
+│   │   ├── CreateBrandRequest  
+│   │   └── UpdateBrandRequest  
+│   └── 📂 responses            # Outbound DTOs
+│       ├── GetAllBrandsResponse
+│       └── GetByIdBrandResponse
+│
+├── 📂 core.utilities.mappers   # Core / Utilities
+│   ├── ModelMapperManager      # Configures matching strategies (STANDARD for requests, LOOSE for responses).
+│   └── ModelMapperService      
+│
+├── 📂 dataAccess               # Data Access Layer
+│   ├── 📂 abstracts
+│   │   └── BrandRepository     # Extends JpaRepository for out-of-the-box SQL operations (findAll, save, deleteById).
+│   └── 📂 concretes
+│
+└── 📂 entities.concretes       # Domain Model
+    └── Brand                   # JPA Entity mapped strictly to the MS SQL Server 'brands' table.
+```
 
 ## ⚙️ Technical Specifications & Best Practices
 
@@ -38,3 +74,4 @@ The system is decoupled into isolated layers, communicating exclusively through 
 1. Clone the repository to your local machine:
    ```bash
    git clone [https://github.com/ahmet-cann/rent-a-car-backend.git](https://github.com/ahmet-cann/rent-a-car-backend.git)
+   ```
