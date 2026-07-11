@@ -3,6 +3,7 @@ package com.ahmet_cann.rentACar.business.concretes;
 import com.ahmet_cann.rentACar.business.abstracts.BrandServices;
 import com.ahmet_cann.rentACar.business.requests.CreateBrandRequest;
 import com.ahmet_cann.rentACar.business.responses.GetAllBrandsResponse;
+import com.ahmet_cann.rentACar.core.utilities.mappers.ModelMapperService;
 import com.ahmet_cann.rentACar.dataAccess.abstracts.BrandRepository;
 import com.ahmet_cann.rentACar.entities.concretes.Brand;
 import lombok.Data;
@@ -14,8 +15,8 @@ import java.util.List;
 @Data
 
 public class BrandManager implements BrandServices {
-
     private BrandRepository brandRepository;
+    private ModelMapperService modelMapperService;
 
     @Override
     public List<GetAllBrandsResponse> getAll() {
@@ -33,8 +34,7 @@ public class BrandManager implements BrandServices {
 
     @Override
     public void add(CreateBrandRequest createBrandRequest) {
-        Brand brand = new Brand();
-        brand.setBrandName(createBrandRequest.getBrandName());
+        Brand brand = this.modelMapperService.forRequest().map(createBrandRequest, Brand.class);
         this.brandRepository.save(brand);
     }
 
