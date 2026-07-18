@@ -1,19 +1,19 @@
 package com.ahmet_cann.rentACar.entities.concretes;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Table(name = "brands")
-@Data
+@Table(name = "models")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Data
 
-public class Brand {
+
+public class Model {
     @Column(name = "brandName")
     private String brandName;
 
@@ -22,7 +22,7 @@ public class Brand {
     @Column(name = "id")
     private int id;
 
-    @OneToMany(mappedBy = "brand")
-    List<Model> models;
-
+    @ManyToOne
+    @JoinTable(name = "brand_id")
+    private Brand brand;
 }
