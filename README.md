@@ -46,11 +46,13 @@ com.ahmet_cann.rentACar
 │
 ├── 📂 dataAccess               # Data Access Layer
 │   ├── 📂 abstracts
-│   │   └── BrandRepository     # Extends JpaRepository for out-of-the-box SQL operations (findAll, save, deleteById).
+│   │   ├── BrandRepository     # Extends JpaRepository for Brand persistence.
+│   │   └── ModelRepository     # Added: Extends JpaRepository for Model persistence.
 │   └── 📂 concretes
 │
 └── 📂 entities.concretes       # Domain Model
-    └── Brand                   # JPA Entity mapped strictly to the MS SQL Server 'brands' table.
+    ├── Brand                   # JPA Entity mapped to 'brands' table.
+    └── Model                   # JPA Entity mapped to 'models' table (linked to Brand via @ManyToOne).
 ```
 
 ## ⚙️ Technical Specifications & Best Practices
