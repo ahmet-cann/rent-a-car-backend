@@ -52,7 +52,8 @@ com.ahmet_cann.rentACar
 │
 └── 📂 entities.concretes       # Domain Model
     ├── Brand                   # JPA Entity mapped to 'brands' table.
-    └── Model                   # JPA Entity mapped to 'models' table (linked to Brand via @ManyToOne).
+    ├── Model                   # JPA Entity mapped to 'models' table (linked to Brand via @ManyToOne).
+    └── Car                     # Added: JPA Entity mapped to 'cars' table (linked to Model via @ManyToOne).
 ```
 
 ## ⚙️ Technical Specifications & Best Practices
