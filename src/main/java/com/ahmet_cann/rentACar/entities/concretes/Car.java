@@ -1,6 +1,5 @@
 package com.ahmet_cann.rentACar.entities.concretes;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,27 +7,35 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Table(name = "models")
+@Table(name = "cars")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 
-
-public class Model {
-    @Column(name = "modelName")
-    private String brandName;
-
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
+    @Column(name = "plate")
+    private String plate;
 
-    @OneToMany(mappedBy = "model")
-    private List<Car> cars;
+    @Column(name = "dailyPrice")
+    private double dailyPrice;
+
+    @Column(name = "modelYear")
+    private int modelYear;
+
+    @Column(name = "state")
+    private int state;
+
+    @ManyToOne
+    @JoinColumn(name = "model_id")
+    private Model model;
 
 }
+
+
+

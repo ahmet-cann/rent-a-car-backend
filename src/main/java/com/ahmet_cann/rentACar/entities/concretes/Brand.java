@@ -23,6 +23,6 @@ public class Brand {
     private int id;
 
     @OneToMany(mappedBy = "brand")
-    List<Model> models;
+    private List<Model> models;
 
 }
